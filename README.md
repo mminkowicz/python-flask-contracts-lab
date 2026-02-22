@@ -64,86 +64,66 @@ Build the following routes:
 
 ---
 
+## API Endpoints
+
+### `GET /contract/<id>`
+
+Look up a contract by its numeric ID.
+
+| Status Code | Description |
+|-------------|-------------|
+| **200** | Contract found — returns the contract information as plain text. |
+| **404** | Contract not found. |
+
+**Example:**
+
+```
+GET /contract/1  →  200  "This contract is for John and building a shed"
+GET /contract/99 →  404  "Contract not found"
+```
+
+### `GET /customer/<customer_name>`
+
+Verify whether a customer exists. No data is returned to protect sensitive information.
+
+| Status Code | Description |
+|-------------|-------------|
+| **204** | Customer found — empty response body (sensitive data). |
+| **404** | Customer not found. |
+
+**Example:**
+
+```
+GET /customer/bob   →  204  (empty body)
+GET /customer/mario →  404  "Customer not found"
+```
+
+---
+
+## Setup
+
+1. Fork and clone the repository.
+2. Install dependencies:
+
+```bash
+pipenv install
+pipenv shell
+```
+
+3. Run the server:
+
+```bash
+python server/app.py
+```
+
+4. Run tests:
+
+```bash
+python -m pytest server/testing/app_test.py -v
+```
+
+---
+
 ## Tools and Resources
 
-- **GitHub Repo**: *Link to be provided*
 - **Flask Quickstart**: [https://flask.palletsprojects.com/en/stable/quickstart/](https://flask.palletsprojects.com/en/stable/quickstart/)
-
----
-
-## Instructions
-
-### Set Up
-
-Before coding:
-
-1. **Fork and Clone**
-   - Go to the provided GitHub repository link.
-   - Fork the repository to your GitHub account.
-   - Clone the forked repository to your local machine.
-
-2. **Open and Run**
-   - Open the project in VSCode.
-   - Run `pipenv install` to install dependencies.
-   - Run `pipenv shell` to activate the Python shell.
-
----
-
-### Task 1: Define the Problem
-
-Build the following routes:
-
-- `/contract/<id>`
-- `/customer/<customer_name>`
-
----
-
-### Task 2: Determine the Design
-
-#### App Routes:
-
-- `/contract/<id>`
-  - **200**: Contract found — return information
-  - **404**: Contract not found
-
-- `/customer/<customer_name>`
-  - **204**: Customer found — return no information
-  - **404**: Customer not found
-
----
-
-### Task 3: Develop, Test, and Refine the Code
-
-1. Create a **feature branch**.
-2. Build the following routes:
-
-#### `/contract/<id>`
-
-- If the contract ID is found in the given array:
-  - Return contract information with a **200** response.
-- If not found:
-  - Return a **404** response.
-
-#### `/customer/<customer_name>`
-
-- If the customer name is found:
-  - Return a **204** response with an empty body.
-- If not found:
-  - Return a **404** response.
-
-3. Push the feature branch and open a PR on GitHub.
-4. Merge into `main`.
-
----
-
-### Task 4: Document and Maintain
-
-#### Best Practices:
-
-- Add comments to explain logic and purpose.
-- Clarify code intent for other developers.
-- Include a screenshot of completed work in the README.
-- Update the README to reflect functionality using [https://makeareadme.com](https://makeareadme.com).
-- Delete stale branches on GitHub.
-- Remove unnecessary or commented-out code.
-- Update `.gitignore` if needed to exclude sensitive data
